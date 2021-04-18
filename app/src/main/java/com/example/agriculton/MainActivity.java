@@ -27,8 +27,9 @@ public class MainActivity extends AppCompatActivity {
         txtContrasena = (EditText)findViewById(R.id.txtContrasena);
 
         //Conexión a la BBDD
-        admin = new AdminSQLiteOpenHelper(this, "BD", null, 1);
-        BD = admin.getWritableDatabase();
+        this.admin = new AdminSQLiteOpenHelper(this, "BD", null, 1);
+        this.BD = admin.getWritableDatabase();
+        //BD.execSQL("insert into Usuarios values ('test@gmail.com', '1234')"); //DATOS PARA ENTRAR EN LA BBDD
     }
 
     public void IniciarSesion(View view){
