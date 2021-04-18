@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AgricultON</string>
+    <string name="btnIniciarSesion">Iniciar Sesión</string>
+    <string name="btnRegistrarse">Registrarse</string>
+    <string name="txtEmail">Email</string>
+    <string name="txtContrasena">Contraseña</string>
+</resources>
