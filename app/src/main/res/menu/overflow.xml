@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/btnAcercaDe"
+        android:icon="@drawable/ic_question_mark_white"
+        android:title="@string/AcercaDe"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/btnConfiguracion"
+        android:title="@string/Configuracion" />
+    <item
+        android:id="@+id/btnCerrarSesion"
+        android:title="@string/CerrrarSesion" />
+</menu>

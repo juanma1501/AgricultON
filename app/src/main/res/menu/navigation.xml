@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/btnPerfil"
+        android:icon="@drawable/ic_baseline_account_circle_24"
+        android:title="@string/perfil" />
+    <item
+        android:id="@+id/btnCampos"
+        android:icon="@drawable/ic_baseline_local_florist_24"
+        android:title="@string/productos" />
+    <item
+        android:id="@+id/btnNoticias"
+        android:icon="@android:drawable/ic_menu_mapmode"
+        android:title="@string/campos" />
+</menu>

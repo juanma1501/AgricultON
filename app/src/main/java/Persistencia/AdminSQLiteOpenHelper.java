@@ -1,4 +1,4 @@
-package com.example.agriculton;
+package Persistencia;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,8 +14,9 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase BD) {
-        BD.execSQL("create table Usuarios (email text primary key, contrasena text)");
-        BD.execSQL("insert into Usuarios values ('test@gmail.com', '1234')");
+        BD.execSQL("create table Usuarios (email text primary key, contrasena text, nombre text, apellido text, fecha_nacimiento date)");
+        BD.execSQL("create table Cultivos (nombre text primary key, descripcion text, foto text)");
+        BD.execSQL("insert into Cultivos values ('Manzana', '')");
     }
 
     @Override

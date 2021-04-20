@@ -1,4 +1,4 @@
-package com.example.agriculton;
+package com.example.Presentacion;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import Persistencia.AdminSQLiteOpenHelper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,11 +39,11 @@ public class MainActivity extends AppCompatActivity {
         String email = txtEmail.getText().toString();
         String contrasena = txtContrasena.getText().toString();
 
-        if(!email.equals("") || !contrasena.equals("")){
+        if(!email.equals("") && !contrasena.equals("")){
             Cursor consulta = BD.rawQuery(
                     "select * from Usuarios where email = '" + email + "' and contrasena = '" + contrasena + "'", null);
             if (consulta.moveToFirst()) {
-                Intent intent = new Intent(this, Perfil.class);
+                Intent intent = new Intent(this, PaginaPrincipal.class);
                 //intent.putExtra("nombre", nombre) esto es para pasar el nombre a la otra activity;
                 startActivity(intent);
                 finish();
@@ -55,5 +57,12 @@ public class MainActivity extends AppCompatActivity {
             InputMethodManager imm = (InputMethodManager)getSystemService(this.INPUT_METHOD_SERVICE);
             imm.showSoftInput(txtEmail, InputMethodManager.SHOW_IMPLICIT);
         }
+    }
+
+    public void Registrarse(View view){
+        Intent intent = new Intent(this, Registrarse.class);
+        //intent.putExtra("nombre", nombre) esto es para pasar el nombre a la otra activity;
+        startActivity(intent);
+        finish();
     }
 }
