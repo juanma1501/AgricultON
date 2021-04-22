@@ -114,4 +114,8 @@
     <string name="newDescripcion">Descripción del cultivo...</string>
     <string name="guardar">Guardar</string>
     <string name="cancelar">Cancelar</string>
+    <string name="fechaNacimiento">Fecha de Nacimiento</string>
+    <string name="ultimoAcceso">Hora de último acceso</string>
+    <string name="Pasos">Pasos</string>
+    <string name="btnIntroducir">IntroducirDatos</string>
 </resources>
