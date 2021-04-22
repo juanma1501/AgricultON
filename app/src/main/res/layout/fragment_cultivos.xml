@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="#BD2D2D"
+    android:foregroundTint="#FFFFFF"
     tools:context=".cultivos">
 
     <GridView
@@ -15,7 +17,23 @@
         android:horizontalSpacing="1dp"
         android:numColumns="2"
         android:verticalSpacing="1dp"
-        android:visibility="visible"
-        tools:visibility="visible"></GridView>
+        tools:visibility="visible">
 
-</RelativeLayout>
+    </GridView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnAnadir"
+        android:layout_width="72dp"
+        android:layout_height="70dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="75dp"
+        android:soundEffectsEnabled="true"
+        android:tint="#DA1F1F"
+        app:backgroundTint="@color/purple_200"
+        app:fabCustomSize="70dp"
+        app:fabSize="auto"
+        app:maxImageSize="40dp"
+        app:srcCompat="@drawable/ic_baseline_add_circle_24"></com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

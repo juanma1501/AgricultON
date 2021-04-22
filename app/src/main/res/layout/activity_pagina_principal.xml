@@ -20,8 +20,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="113dp"
-        tools:layout_editor_absoluteY="153dp">
-
-    </FrameLayout>
+        tools:layout_editor_absoluteY="153dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

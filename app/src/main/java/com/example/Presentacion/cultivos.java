@@ -1,6 +1,8 @@
 package com.example.Presentacion;
 
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.drawable.Icon;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,9 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -27,6 +33,11 @@ public class cultivos extends Fragment {
     ArrayList<String> nombreProductos = new ArrayList<String>() {{add("Manzana"); add("Naranja"); add("Fresa"); add("Sandía"); add("Kiwi"); add("Plátano"); add("Tomate");}};
     ArrayList<Integer> imagenesProductos = new ArrayList<Integer>() {{add(R.drawable.apple); add(R.drawable.oranges); add(R.drawable.strawberry); add(R.drawable.watermelon); add(R.drawable.kiwi); add(R.drawable.banana); add(R.drawable.tomate);}};
     ArrayList<String> descripciones = new ArrayList<String>();
+    private FloatingActionButton btnAnadir;
+    private AlertDialog.Builder dialogBuilder;
+    private AlertDialog dialog;
+    private EditText new_nombre, new_descripcion;
+    private Button guardarNew, CancelarNew;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -89,11 +100,48 @@ public class cultivos extends Fragment {
                 startActivity(intent);
             }
         });
+
+        btnAnadir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createNewCultivoDialog();
+            }
+        });
         return view;
     }
 
     private void initViews(View view) {
         gridView = view.findViewById(R.id.gridview);
+        btnAnadir = view.findViewById(R.id.btnAnadir);
+    }
+
+    public void createNewCultivoDialog(){
+        dialogBuilder = new AlertDialog.Builder(this.getActivity());
+        final View newCultivoPopupView = getLayoutInflater().inflate(R.layout.new_cultivo_popup, null);
+
+        new_nombre = newCultivoPopupView.findViewById(R.id.newNombre);
+        new_descripcion = newCultivoPopupView.findViewById(R.id.newDescripcion);
+        guardarNew = newCultivoPopupView.findViewById(R.id.btnGuardarNew);
+        CancelarNew = newCultivoPopupView.findViewById(R.id.btnCancelarNew);
+
+        dialogBuilder.setView(newCultivoPopupView);
+        dialog = dialogBuilder.create();
+        dialog.show();
+
+        guardarNew.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                //Define save button
+            }
+        });
+
+        CancelarNew.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
     }
 
     private class CustomAdapter extends BaseAdapter {
@@ -118,6 +166,7 @@ public class cultivos extends Fragment {
 
             TextView name = view1.findViewById(R.id.productos);
             ImageView image = view1.findViewById(R.id.fotoproductos);
+            btnAnadir = view1.findViewById(R.id.btnAnadir);
 
             name.setText(nombreProductos.get(i));
             image.setImageResource(imagenesProductos.get(i));
