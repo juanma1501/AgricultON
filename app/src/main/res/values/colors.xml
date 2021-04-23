@@ -12,4 +12,5 @@
     <color name="headings">#eeeeee</color>
     <color name="url">#0645AD </color>
     <color name="colorAccent">#757575</color>
+    <color name="colorTitulos">#FF3700B3</color>
 </resources>

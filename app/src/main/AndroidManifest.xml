@@ -9,13 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AgricultON">
+        <activity android:name=".acercaDe"></activity>
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBHI_-XtnVBxglV7r__5fHORZr6hwJCRKw"/>
-        <activity android:name=".grid_item"></activity>
+            android:value="AIzaSyBHI_-XtnVBxglV7r__5fHORZr6hwJCRKw" />
+
+        <activity android:name=".grid_item" />
         <activity android:name=".row_data" />
         <activity android:name=".PaginaPrincipal" />
         <activity android:name=".Registrarse" />

@@ -16,7 +16,7 @@
         app:menu="@menu/navigation" />
 
     <FrameLayout
-        android:id="@+id/fragmentContainer"
+        android:id="@+id/frame_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="113dp"

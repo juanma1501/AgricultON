@@ -1,6 +1,7 @@
 package com.example.Presentacion;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText txtEmail;
     private EditText txtContrasena;
     private ConectorDB conectorDB;
-    private RelativeLayout rellayLogin;
+    private ConstraintLayout rellayLogin;
     private Usuario usuario;
 
     @Override
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         txtEmail = (EditText)findViewById(R.id.txtEmail);
         txtContrasena = (EditText)findViewById(R.id.txtContrasena);
+        rellayLogin = findViewById(R.id.layoutLogin);
 
         //Conexión a la BBDD
         conectorDB = new ConectorDB(this);
@@ -54,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
                         "Correo electrónico o contraseña incorrectos",Toast.LENGTH_SHORT).show();
                 txtEmail.getText().clear();
                 txtContrasena.getText().clear();
-
             }
             else
             {

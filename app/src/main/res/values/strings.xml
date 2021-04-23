@@ -121,4 +121,25 @@
     <string name="registro_correcto">Usuario registrado correctamente</string>
     <string name="login_correcto">Inicio de sesión realizado correctamente</string>
     <string name="text_member">¿Tienes cuenta? Inicia Sesión</string>
+    <string name="agriculton">AgricultON</string>
+    <string name="introduccion">Aplicación que tiene como fin ayudar al agricultor en su trabajo. La aplicación puede usarse como una especie de Wikipedia sobre la que añadir productos y sus descripciones. Además se sincroniza con Google Maps para visualizar la posición exacta de los campos.</string>
+    <string name="quienes">¿Quiénes somos?</string>
+    <string name="somos">Somos una empresa StartUp que se encarga de desarrollo software y la integración de sistemas de información a la medida del cliente.</string>
+    <string name="startUp">Startup es una empresa de nueva creación que comercializa productos y/o servicios a través del uso intensivo de las tecnologías de la información y la comunicación (TIC’s), con un modelo de negocio escalable el cual le permite un crecimiento rápido y sostenido en el tiempo. Este fuerte componente tecnológico les permite poder escalar su negocio de forma ágil y rápida, y con una necesidad de capital inferior a las empresas tradicionales.</string>
+    <string name="Aviso">Aviso:</string>
+    <string name="aviso_">Aplicación aún en fase de desarrollo. Se recomienda tener activadas las actualizaciones autómaticas para recibir las últimas mejoras y funcionalidades aún sin implementar.</string>
+    <string name="redes">Síguenos en nuestras redes sociales:</string>
+    <string name="linkRedes">agricultON en Twitter, Facebook e Instagram</string>
+    <string name="autores">Autores</string>
+    <string name="juanma">Juan Manuel Porrero Almansa</string>
+    <string name="correroJuanma">JuanManuel.Porrero@alu.uclm.es</string>
+    <string name="alonso">Alonso Díaz Sobrino</string>
+    <string name="correoAlonso">Alonso.Diaz@alu.uclm.es</string>
+    <string name="desi">Desiderio Almansa Porrero</string>
+    <string name="correoDesi">Desiderio.Almansa@alu.uclm.es</string>
+    <string name="infoAutor">Se trata de una aplicación con fines académicos que ha sido desarrollada como parte de proyecto de laboratorio en la asignatura Gestión de Sistemas de Información de la Escuela Superior Informática de Ciudad Real durante el curso 2020/2021.</string>
+    <string name="Copyright">Copyright</string>
+    <string name="copy">Cualquier forma de reproducción, distribución, comunicación pública o transformación de esta obra solo puede ser realizada con la autorización de sus titulares, salvo excepción prevista por la ley.</string>
+    <string name="copy2">AgricultON todos los derechos reservados.</string>
+    <string name="noimplementada">Funcionalidad aún no implementada</string>
 </resources>
