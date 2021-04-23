@@ -117,5 +117,8 @@
     <string name="fechaNacimiento">Fecha de Nacimiento</string>
     <string name="ultimoAcceso">Hora de último acceso</string>
     <string name="Pasos">Pasos</string>
-    <string name="btnIntroducir">IntroducirDatos</string>
+    <string name="btnIntroducir">Introducir Datos</string>
+    <string name="registro_correcto">Usuario registrado correctamente</string>
+    <string name="login_correcto">Inicio de sesión realizado correctamente</string>
+    <string name="text_member">¿Tienes cuenta? Inicia Sesión</string>
 </resources>
