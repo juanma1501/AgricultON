@@ -42,7 +42,26 @@ public class PaginaPrincipal extends AppCompatActivity {
         bundle.putSerializable("usuario",usuario);
         fragment.setArguments(bundle);
         loadFragment(fragment);
+    }
 
+    private void lanzarCamposFragment(){
+        Fragment fragment;
+        Bundle bundle;
+        fragment = new campos();
+        bundle =  new Bundle();
+        bundle.putSerializable("usuario",usuario);
+        fragment.setArguments(bundle);
+        loadFragment(fragment);
+    }
+
+    private void lanzarCultivosFragment(){
+        Fragment fragment;
+        Bundle bundle;
+        fragment = new cultivos();
+        bundle =  new Bundle();
+        bundle.putSerializable("usuario",usuario);
+        fragment.setArguments(bundle);
+        loadFragment(fragment);
     }
 
     private void loadFragment(Fragment fragment) {
@@ -56,21 +75,19 @@ public class PaginaPrincipal extends AppCompatActivity {
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Fragment selectedFragment = null;
 
             switch (item.getItemId()) {
                 case R.id.btnPerfil:
-                    selectedFragment = new perfil_();
-                    break;
+                    lanzarPerfilFragment();
+                    return true;
                 case R.id.btnCampos:
-                    selectedFragment = new cultivos();
-                    break;
+                    lanzarCultivosFragment();
+                    return true;
                 case R.id.btnNoticias:
-                    selectedFragment = new campos();
-                    break;
+                    lanzarCamposFragment();
+                    return true;
             }
-            getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, selectedFragment).commit();
-            return true;
+            return false;
         }
     };
 

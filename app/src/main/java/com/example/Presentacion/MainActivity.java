@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             else
             {
                 this.usuario = conectorDB.leerUsuario(id);
-                Log.d("Debug_Login","Usuario leído:"+ usuario.toString());
+                Log.d("Debug_Login " + id,"Usuario leído:"+ usuario.toString());
                 Intent i = new Intent(this, PaginaPrincipal.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("usuario", usuario);

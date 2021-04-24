@@ -10,7 +10,7 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import Dominio.Cultivo;
-import Dominio.Pasos;
+import Dominio.Paso;
 import Dominio.Usuario;
 
 public class ConectorDB {
@@ -66,6 +66,19 @@ public class ConectorDB {
 
         // Inserting Row
         BD.insert("Cultivos", null, values);
+        BD.close();
+    }
+
+    public void insertarPaso(Paso paso)
+    {
+        BD = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("idUser", paso.getIdUser());
+        values.put("pasos", paso.getPasos());
+        values.put("fecha", paso.getFecha());
+
+        // Inserting Row
+        BD.insert("Pasos", null, values);
         BD.close();
     }
 
@@ -128,19 +141,19 @@ public class ConectorDB {
             } while(c.moveToNext());
         }
 
-        //usuario.setListaPasos(leerPasos(usuario));
+        usuario.setListaPasos(leerPasos(usuario));
         BD.close();
 
         return usuario;
     }
 
-    private ArrayList<Pasos> leerPasos(Usuario usuario) {
+    private ArrayList<Paso> leerPasos(Usuario usuario) {
         BD = dbHelper.getReadableDatabase();
-        ArrayList<Pasos> pasos = new ArrayList<Pasos>();
+        ArrayList<Paso> pasos = new ArrayList<Paso>();
         String[] campos = new String[] {"pasos", "fecha"};
-        String email = usuario.getEmail();
+        int idUser = usuario.getIdUser();
 
-        Cursor c = BD.query("Pasos", campos, "email="+email, null,
+        Cursor c = BD.query("Pasos", campos, "idUser="+ idUser, null,
                 null, null, "fecha");
 
         //Nos aseguramos de que existe al menos un registro
@@ -149,11 +162,13 @@ public class ConectorDB {
             do {
                 int pasos_ = c.getInt(0);
                 String fecha = c.getString(1);
-
+                Paso paso = new Paso(idUser, pasos_, fecha);
+                pasos.add(paso);
                 Log.d("Debug_BBDD","Paso leído:"+pasos.toString());
             } while(c.moveToNext());
         }
         BD.close();
         return pasos;
     }
+
 }

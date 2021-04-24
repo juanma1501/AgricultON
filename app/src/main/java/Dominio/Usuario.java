@@ -12,6 +12,23 @@ import java.util.Locale;
 public class Usuario implements Serializable {
 
     private String contrasena;
+    private String nombre;
+    private String apellidos;
+    private String fechaNacimiento;
+    private String email;
+    private String ultimoAcceso;
+    private String foto;
+    private int idUser;
+
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
+
+
 
     @Override
     public String toString() {
@@ -24,26 +41,19 @@ public class Usuario implements Serializable {
                 ", ultimoAcceso='" + ultimoAcceso + '\'' +
                 ", foto='" + foto + '\'' +
                 ", listaPasos=" + listaPasos +
+                ", idUser=" + idUser +
                 '}';
     }
 
-    private String nombre;
-    private String apellidos;
-    private String fechaNacimiento;
-    private String email;
-    private String ultimoAcceso;
-    private String foto;
-    private int idUser;
-
-    public ArrayList<Pasos> getListaPasos() {
+    public ArrayList<Paso> getListaPasos() {
         return listaPasos;
     }
 
-    public void setListaPasos(ArrayList<Pasos> listaPasos) {
+    public void setListaPasos(ArrayList<Paso> listaPasos) {
         this.listaPasos = listaPasos;
     }
 
-    private ArrayList<Pasos> listaPasos;
+    private ArrayList<Paso> listaPasos;
 
     private static final SimpleDateFormat dateFormat =
             new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
@@ -59,7 +69,7 @@ public class Usuario implements Serializable {
         this.ultimoAcceso = ultimoAcceso;
         this.foto = foto;
         this.idUser = idUser;
-        this.listaPasos = new ArrayList<Pasos>();
+        this.listaPasos = new ArrayList<Paso>();
     }
 
 
@@ -72,7 +82,7 @@ public class Usuario implements Serializable {
         this.email = email;
         this.foto = foto;
 
-        this.listaPasos  = new ArrayList<Pasos>();
+        this.listaPasos  = new ArrayList<Paso>();
         this.ultimoAcceso = this.dateFormat.format(new Date());
     }
 
@@ -80,6 +90,10 @@ public class Usuario implements Serializable {
     public Usuario(String email, String contrasena) {
         this.contrasena = contrasena;
         this.email = email;
+    }
+
+    public void nuevoPaso(Paso paso) {
+        this.listaPasos.add(paso);
     }
 
     public int getEdad() {
