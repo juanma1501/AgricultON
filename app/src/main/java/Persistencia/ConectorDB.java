@@ -7,6 +7,8 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.example.Presentacion.R;
+
 import java.util.ArrayList;
 
 import Dominio.Cultivo;
@@ -57,7 +59,7 @@ public class ConectorDB {
         BD.close();
     }
 
-    public void insertarCultivo(Cultivo cultivo){
+    public void insertarCultivo(Cultivo cultivo, ArrayList<Cultivo> cultivos){
         BD = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("descripcion", cultivo.getDescripcion());
@@ -66,6 +68,56 @@ public class ConectorDB {
 
         // Inserting Row
         BD.insert("Cultivos", null, values);
+        BD.close();
+        cultivos.add(cultivo);
+
+    }
+
+    public ArrayList<Cultivo> leerCultivos(){
+        BD = dbHelper.getReadableDatabase();
+        ArrayList<Cultivo> cultivos = new ArrayList<>();
+        Cultivo cultivo;
+        String[] campos = new String[] {"nombre", "descripcion", "foto"};
+        Log.d("Cultivos", "Leyendo Cultivos");
+
+        Cursor c = BD.query("Cultivos", campos, null, null,
+                null, null, null);
+        //Nos aseguramos de que existe al menos un registro
+        if (c.moveToFirst()) {
+            //Recorremos el cursor hasta que no haya más registros
+            do {
+                String nombre = c.getString(0);
+                String descripcion = c.getString(1);
+                String foto = c.getString(2);
+                cultivo = new Cultivo(nombre, descripcion, foto);
+                Log.d("Cultivos", "Cultivo leído:" + cultivo.toString());
+                cultivos.add(cultivo);
+            } while(c.moveToNext());
+        }
+        BD.close();
+        return cultivos;
+    }
+
+    public void actualizarCultivos(ArrayList<String> nombres, ArrayList<Integer> fotos, ArrayList<String> descripciones ){
+        BD = dbHelper.getReadableDatabase();
+        Cultivo cultivo;
+        String[] campos = new String[] {"nombre", "descripcion", "foto"};
+
+        Cursor c = BD.query("Cultivos", campos, null, null,
+                null, null, null);
+        //Nos aseguramos de que existe al menos un registro
+        if (c.moveToFirst()) {
+            //Recorremos el cursor hasta que no haya más registros
+            do {
+                String nombre = c.getString(0);
+                String descripcion = c.getString(1);
+                String foto = c.getString(2);
+                cultivo = new Cultivo(nombre, descripcion, foto);
+                nombres.add(cultivo.getNombre());
+                descripciones.add(cultivo.getDescripcion());
+                if (cultivo.getFoto().equals("")) fotos.add(R.drawable.ic_baseline_local_florist_24);
+            } while(c.moveToNext());
+        }
         BD.close();
     }
 
@@ -80,6 +132,20 @@ public class ConectorDB {
         // Inserting Row
         BD.insert("Pasos", null, values);
         BD.close();
+    }
+
+    public int checkCultivo(String nombre)
+    {
+        BD = dbHelper.getReadableDatabase();
+        int id=-1;
+        Cursor cursor= BD.rawQuery("SELECT idCultivo FROM Cultivos WHERE nombre= " + nombre, null);
+        if(cursor.getCount()>0) {
+            cursor.moveToFirst();
+            id=cursor.getInt(0);
+            cursor.close();
+        }
+        BD.close();
+        return id;
     }
 
     /*devuelve todos los Usuarios*/

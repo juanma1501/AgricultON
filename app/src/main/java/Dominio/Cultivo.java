@@ -37,7 +37,12 @@ public class Cultivo {
     }
 
 
-
-
-
+    @Override
+    public String toString() {
+        return "Cultivo{" +
+                "nombre='" + nombre + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", foto='" + foto + '\'' +
+                '}';
+    }
 }

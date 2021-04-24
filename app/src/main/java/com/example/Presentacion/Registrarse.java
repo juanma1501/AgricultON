@@ -8,6 +8,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -56,7 +57,7 @@ public class Registrarse extends AppCompatActivity {
             public void onClick(View v) {
                 Usuario nuevoUser = getDatos();
                 Log.d("aqui", "aqui");
-                if(nuevoUser != null){
+                if (nuevoUser != null) {
                     finish();
                 }
             }
@@ -77,7 +78,6 @@ public class Registrarse extends AppCompatActivity {
         });
 
 
-
     }
 
     @Override
@@ -85,7 +85,16 @@ public class Registrarse extends AppCompatActivity {
         super.onBackPressed();
     }
 
-    private void initViews(){
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+        }
+        return true;
+    }
+
+    private void initViews() {
         txtNombre = findViewById(R.id.txtNombre);
         txtApellido = findViewById(R.id.txtApellido);
         txtCorreo = findViewById(R.id.txtCorreo);
@@ -99,13 +108,12 @@ public class Registrarse extends AppCompatActivity {
     }
 
 
-
     private void showDatePickerDialog() {
         DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 // +1 because january is zero
-                final String selectedDate = twoDigits(day) + "/" + twoDigits(month+1) + "/" + year;
+                final String selectedDate = twoDigits(day) + "/" + twoDigits(month + 1) + "/" + year;
                 txtFechaNacimiento.setText(selectedDate);
             }
         });
@@ -113,7 +121,7 @@ public class Registrarse extends AppCompatActivity {
     }
 
     private String twoDigits(int n) {
-        return (n<=9) ? ("0"+n) : String.valueOf(n);
+        return (n <= 9) ? ("0" + n) : String.valueOf(n);
     }
 
     public Usuario getDatos() {
@@ -121,27 +129,25 @@ public class Registrarse extends AppCompatActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Atención");
-        builder.setPositiveButton("OK",null);
+        builder.setPositiveButton("OK", null);
         email = txtCorreo.getText().toString();
         if (!txtNombre.getText().toString().equals("") && !txtApellido.getText().toString().equals("") && !txtCorreo.getText().toString().equals("") && !txtFechaNacimiento.getText().toString().equals("") && !txtContrasena.getText().toString().equals("") && !txtConfirmarContrasena.getText().toString().equals("")) {
             if (email.equals("")) Log.d("es null", "es null");
             int id = conectorDB.checkUser(email);
-            if(id>0)
-            {
-                builder.setMessage("Ya hay un usuario registado con el correo "+ email);
+            if (id > 0) {
+                builder.setMessage("Ya hay un usuario registado con el correo " + email);
                 builder.create();
                 builder.show();
                 return null;
-            }else{
-                if((txtContrasena.getText().toString().trim().length() > 0) &&
-                        (txtConfirmarContrasena.getText().toString().trim().length()>0)){
+            } else {
+                if ((txtContrasena.getText().toString().trim().length() > 0) &&
+                        (txtConfirmarContrasena.getText().toString().trim().length() > 0)) {
                     if (!txtContrasena.getText().toString().equals(txtConfirmarContrasena.getText().toString())) {
                         builder.setMessage("Las contraseñas no coinciden");
                         builder.create();
                         builder.show();
                         return null;
-                    }
-                    else {
+                    } else {
                         fechaNacimiento = txtFechaNacimiento.getText().toString();
                         contrasena = txtContrasena.getText().toString();
                         nombre = txtNombre.getText().toString();

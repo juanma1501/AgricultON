@@ -86,37 +86,54 @@ public class perfil_ extends Fragment {
             public void onClick(View v) {
                 //Coger la última fecha y generar otra que sea 3 días después y si es nula coger la de hoy dd/mm/aa
                 ArrayList<Paso> aux = usuario.getListaPasos();
-                Paso paso = aux.get(aux.size() - 1);
-                String fecha = paso.getFecha();
-                String dia = fecha.substring(0,2);
-                Log.d("dia", "El dia es " + dia);
-                String fechaNueva;
-                int diaNuevo = Integer.parseInt(dia);
-
-
-                if (diaNuevo + 3 > 30) {
-                    diaNuevo = 1;
-                    int end = fecha.length();
-                    fechaNueva = "0" + diaNuevo + fecha.substring(2, end);
-                }else if(diaNuevo + 3 < 10) {
-                    diaNuevo+=3;
-                    int end = fecha.length();
-                    fechaNueva = "0" + diaNuevo + fecha.substring(2, end);
-
+                if(aux.size() == 0){
+                    dibujarDesdeCero(aux);
                 }else{
-                    diaNuevo = diaNuevo + 3;
-                    int end = fecha.length();
-                    fechaNueva = diaNuevo + fecha.substring(2, end);
+                    dibujarFechasExistentes(aux);
                 }
-
-                Paso p = new Paso(usuario.getIdUser(), (int)(Math.random()*(10000-1500+1)), fechaNueva);
-                conectorDB.insertarPaso(p);
-                usuario.nuevoPaso(p);
-                Log.d("La fecha nueva es: ", "es"+ fechaNueva);
-                drawChart();
-
             }
         });
+    }
+
+    private void dibujarDesdeCero(ArrayList<Paso> aux){
+        String fechaNueva = usuario.getUltimoAcceso();
+
+        Paso p = new Paso(usuario.getIdUser(), (int)(Math.random()*(10000-1500+1)), fechaNueva);
+        conectorDB.insertarPaso(p);
+        usuario.nuevoPaso(p);
+        Log.d("La fecha nueva es: ", "es"+ fechaNueva);
+        drawChart();
+    }
+
+    private void dibujarFechasExistentes(ArrayList<Paso> aux){
+        Paso paso = aux.get(aux.size() - 1);
+        String fecha = paso.getFecha();
+        String dia = fecha.substring(0,2);
+        Log.d("dia", "El dia es " + dia);
+        String fechaNueva;
+        int diaNuevo = Integer.parseInt(dia);
+
+
+        if (diaNuevo + 3 > 30) {
+            diaNuevo = 1;
+            int end = fecha.length();
+            fechaNueva = "0" + diaNuevo + fecha.substring(2, end);
+        }else if(diaNuevo + 3 < 10) {
+            diaNuevo+=3;
+            int end = fecha.length();
+            fechaNueva = "0" + diaNuevo + fecha.substring(2, end);
+
+        }else{
+            diaNuevo = diaNuevo + 3;
+            int end = fecha.length();
+            fechaNueva = diaNuevo + fecha.substring(2, end);
+        }
+
+        Paso p = new Paso(usuario.getIdUser(), (int)(Math.random()*(10000-1500+1)), fechaNueva);
+        conectorDB.insertarPaso(p);
+        usuario.nuevoPaso(p);
+        Log.d("La fecha nueva es: ", "es"+ fechaNueva);
+        drawChart();
     }
 
     private void setValores() {
@@ -128,8 +145,11 @@ public class perfil_ extends Fragment {
                 "\t(" + this.usuario.getEdad() +  " años)");
 
         //Foto
-        if (!usuario.getFoto().equals("")){
+        if (usuario.getFoto().equals("user1")){
             this.profile_image.setImageResource(R.drawable.foto);
+        }else{
+            Log.d("foto", "La foto es" + usuario.getFoto());
+            this.profile_image.setImageResource(getResources().getIdentifier("juanma", "drawable", getActivity().getPackageName()));
         }
 
         //GRAFICO CALCULOS
